@@ -10,10 +10,6 @@ const Pedido = sequelize.define('Pedido', {
   ventaId: {
     type: DataTypes.INTEGER,
     allowNull: false,
-    references: {
-      model: 'Ventas',
-      key: 'id',
-    },
   },
   totalItems: {
     type: DataTypes.INTEGER,

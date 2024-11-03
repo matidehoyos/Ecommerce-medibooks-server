@@ -18,10 +18,6 @@ const LibroPromocion = sequelize.define('LibroPromocion', {
   promocionId: {
     type: DataTypes.INTEGER,
     allowNull: false,
-    references: {
-      model: 'Promociones',
-      key: 'id',
-    },
   },
 }, {
   timestamps: false,

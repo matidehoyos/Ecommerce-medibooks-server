@@ -8,6 +8,7 @@ import resenaRoutes from './resenaRoutes.js';
 import pedidoRoutes from './pedidoRoutes.js';
 import clienteRoutes from './clienteRoutes.js';
 import transactionRoutes from './transactionRoutes.js';
+import adminRoutes from './adminRoutes.js';
 
 const router = Router();
 
@@ -20,6 +21,7 @@ router.use('/reseñas', resenaRoutes);
 router.use('/pedidos', pedidoRoutes);
 router.use('/clientes', clienteRoutes);
 router.use('/transaction', transactionRoutes);
+router.use('/admin', adminRoutes);
 
 export default router;
 
