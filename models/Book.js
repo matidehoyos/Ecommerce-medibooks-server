@@ -1,5 +1,5 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
+import DataTypes from 'sequelize';
+import sequelize from '../config/database.js';
 
 const Book = sequelize.define('Book', {
   id: {
@@ -40,6 +40,11 @@ const Book = sequelize.define('Book', {
       min: 0,
     },
   },
+  active: {
+    type: DataTypes.BOOLEAN,
+    allowNull: true,
+    defaultValue: true, 
+  },
   descuento: {
     type: DataTypes.FLOAT,
     allowNull: true,
@@ -63,5 +68,5 @@ const Book = sequelize.define('Book', {
   timestamps: true,  
 });
 
-module.exports = Book;
+export default Book;
 

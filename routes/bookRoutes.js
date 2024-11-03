@@ -1,11 +1,13 @@
-const express = require('express');
-const { getAllBooks, createBook, updateBook, deleteBook, getBook } = require('../controllers/bookController');
+import express from 'express';
+import bookController from '../controllers/bookController.js';
 const router = express.Router();
 
-router.get('/', getAllBooks);
-router.post('/', createBook);
-router.get('/:id', getBook);
-router.put('/:id', updateBook);
-router.delete('/:id', deleteBook);
+router.get('/', bookController.getAllBooks);
+router.post('/', bookController.createBook);
+router.get('/:id', bookController.getBook);
+router.put('/:id', bookController.updateBook);
+router.delete('/:id', bookController.deleteBook);
 
-module.exports = router;
+
+
+export default router;

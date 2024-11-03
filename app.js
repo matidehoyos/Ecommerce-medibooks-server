@@ -1,53 +1,54 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const morgan = require('morgan');
-const helmet = require('helmet');
-const compression = require('compression');
-const path = require('path');
-const sequelize = require('./config/database'); 
+import dotenv from 'dotenv';
+dotenv.config();
+import { sequelize } from './models/index.js';
+import express from 'express';
+import cors from 'cors';
+import morgan from 'morgan';
+import helmet from 'helmet';
+import compression from 'compression';
+import path from 'path';
+import routes from './routes/index.js';
 
 const app = express();
 
-app.use(cors());
+const corsOptions = {
+  origin: 'http://localhost:3000', 
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, 
+  optionsSuccessStatus: 204, 
+};
+
+app.use(cors(corsOptions));
 app.use(morgan('dev'));
 app.use(helmet());
 app.use(compression());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use('/public', express.static(path.join(process.cwd(), 'public')));
 
-app.use('/api/books', require('./routes/bookRoutes'));
-app.use('/api/categories', require('./routes/categoryRoutes'));
-app.use('/api/cart', require('./routes/cartRoutes'));
-app.use('/api/user', require('./routes/userRoutes'));
+app.use('/api', routes);
 
 app.use((req, res, next) => {
-  res.status(404).json({
-    message: 'Ruta no encontrada',
-  });
+  res.status(404).json({ message: 'Ruta no encontrada' });
 });
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).json({
-    message: 'Error del servidor',
-    error: err.message,
-  });
+  res.status(500).json({ message: 'Error del servidor', error: err.message });
 });
 
 const PORT = process.env.PORT || 5000;
 
-sequelize.sync(({ alter: true }))
+sequelize.sync()
   .then(() => {
-    console.log('Conexión a la base de datos establecida y tablas creadas.');
-    app.listen(PORT, () => {
+      console.log('Base de datos sincronizada');
+      app.listen(PORT, () => {
       console.log(`Servidor corriendo en el puerto ${PORT}`);
     });
   })
-  .catch(err => {
-    console.error('Error al conectar a la base de datos:', err);
-  })
+  .catch(error => {
+    console.error('Error al sincronizar la base de datos:', error);
+  });
 
-module.exports = app;
+export default app; 

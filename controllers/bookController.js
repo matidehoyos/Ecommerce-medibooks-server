@@ -1,4 +1,4 @@
-const Book = require('../models/Book');
+import Book from '../models/Book.js';
 
 const getAllBooksController = async (req, res) => {
   try {
@@ -59,10 +59,11 @@ const deleteBookController = async (req, res) => {
   }
 };
 
-module.exports = {
+export default {
   getAllBooks: getAllBooksController,
   getBook: getBookController,
   createBook: createBookController,
   updateBook: updateBookController,
   deleteBook: deleteBookController,
 };
+

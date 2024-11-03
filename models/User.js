@@ -1,5 +1,5 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
+import DataTypes from 'sequelize';
+import sequelize from '../config/database.js';
 
 const User = sequelize.define('User', {
   id: {
@@ -10,48 +10,57 @@ const User = sequelize.define('User', {
   auth0Id: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,  // El auth0Id debe ser único
+    unique: true, 
   },
   username: {
     type: DataTypes.STRING,
     allowNull: true,
-    unique: true,  // Opcional, pero podría ser útil para que el usuario tenga un nombre personalizado único
+    unique: true, 
   },
   email: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,  // El email también es único y requerido
+    unique: true,  
     validate: {
-      isEmail: true,  // Valida que sea un email correcto
+      isEmail: true,  
     },
   },
   profilePicture: {
     type: DataTypes.STRING,
-    allowNull: true,  // La URL de la imagen del perfil puede ser opcional
+    allowNull: true, 
   },
   role: {
     type: DataTypes.STRING,
     allowNull: false,
-    defaultValue: 'user',  // Todos los usuarios tienen el rol 'user' por defecto
+    defaultValue: 'user', 
     validate: {
-      isIn: [['user', 'admin']],  // Solo puede ser 'user' o 'admin'
+      isIn: [['user', 'admin']], 
     },
+  },
+  suspendido: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: false, 
   },
   createdAt: {
     type: DataTypes.DATE,
-    defaultValue: DataTypes.NOW,  // Se crea automáticamente al insertar un registro
+    defaultValue: DataTypes.NOW,  
   },
   updatedAt: {
     type: DataTypes.DATE,
-    defaultValue: DataTypes.NOW,  // Se actualiza automáticamente al modificar el registro
+    defaultValue: DataTypes.NOW,  
   }
 }, {
-  timestamps: true,  // Asegura que Sequelize maneje `createdAt` y `updatedAt`
+  timestamps: true, 
+  tableName: 'users'
 });
 
-// Método para verificar si el usuario es admin
 User.prototype.isAdmin = function() {
   return this.role === 'admin';
 };
 
-module.exports = User;
+
+
+
+export default User;
+

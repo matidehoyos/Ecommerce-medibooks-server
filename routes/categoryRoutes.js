@@ -1,15 +1,10 @@
-const express = require('express');
-const {
-  getAllCategories,
-  createCategory,
-  updateCategory,
-  deleteCategory,
-} = require('../controllers/categoryController');
+import express from 'express';
+import categoryController from '../controllers/categoryController.js';
 const router = express.Router();
 
-router.get('/', getAllCategories);
-router.post('/', createCategory);
-router.put('/:id', updateCategory);
-router.delete('/:id', deleteCategory);
+router.get('/', categoryController.getCategories);
+router.post('/', categoryController.createCategory);
+router.put('/:id', categoryController.updateCategory);
+router.delete('/:id', categoryController.deleteCategory);
 
-module.exports = router;
+export default router;

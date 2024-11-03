@@ -1,6 +1,4 @@
-const Cart = require('../models/Cart');
-const CartItems = require('../models/CartItems');
-const Book = require('../models/Book');
+{/*import Book from '../models/Book.js';
 const User = require('../models/User'); 
 const sequelize = require('../config/database');
 
@@ -284,4 +282,4 @@ const syncCart = async (req, res) => {
     completeCart,
     syncCart 
   };
-  
+  */}
