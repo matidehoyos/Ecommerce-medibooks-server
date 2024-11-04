@@ -17,16 +17,15 @@ const CreatePayment = async (req, res) => {
         const response = await preference.create({
             body: {
                 items,
+                back_urls: {
+                    success: 'https://medibooks.vercel.app/success',  
+                    failure: 'https://medibooks.vercel.app/failure',
+                    pending: 'https://medibooks.vercel.app/pending'
+                },
+                auto_return: 'approved',  
             },
-            back_urls: {
-                success: 'https://medibooks.vercel.app/success',  
-                failure: 'https://medibooks.vercel.app/failure',
-                pending: 'https://medibooks.vercel.app/pending'
-            },
-            notification_url: 'https://medibooks.vercel.app/notifications', 
-            auto_return: 'approved',
         });
-        return res.status(200).json({ id: response.id });
+        return res.status(200).json({ id: response.id});
     } catch (error) {
         console.error("Error al crear la preferencia:", error.message);
         res.status(500).json({ message: "Error al crear la preferencia de pago" });
