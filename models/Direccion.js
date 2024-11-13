@@ -1,44 +1,43 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../config/database.js';
 
-const Pedido = sequelize.define('Pedido', {
+const Direccion = sequelize.define('Direccion', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },
-  ventaId: {
+  clienteId: { 
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-      model: 'Ventas',
+      model: 'clientes',
       key: 'id',
     },
   },
-  clienteId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-      model: 'Clientes',
-      key: 'id',
-    },
-  },
-  direccionId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-      model: 'Direcciones',
-      key: 'id',
-    },
-  },
-  totalItems: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  estado: {
+  direccion: {
     type: DataTypes.STRING,
     allowNull: false,
-    defaultValue: 'pendiente',
+  },
+   piso: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  departamento: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  ciudad: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  codigoPostal: {
+    type: DataTypes.STRING,
+    allowNull: false,
+},
+observacion: {
+      type: DataTypes.TEXT,
+      allowNull: true,
   },
   createdAt: {
     type: DataTypes.DATE,
@@ -50,7 +49,8 @@ const Pedido = sequelize.define('Pedido', {
   },
 }, {
   timestamps: true,
-  tableName: 'pedidos',
+  tableName: 'direcciones',
 });
 
-export default Pedido;
+export default Direccion;
+

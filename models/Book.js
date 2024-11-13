@@ -63,7 +63,23 @@ const Book = sequelize.define('Book', {
     validate: {
       isUrl: true,
     },
-  }
+  },
+  peso: {
+    type: DataTypes.INTEGER, 
+    allowNull: true,
+  },
+  largo: {
+    type: DataTypes.INTEGER,  
+    allowNull: true,
+  },
+  ancho: {
+    type: DataTypes.INTEGER, 
+    allowNull: true,
+  },
+  alto: {
+    type: DataTypes.INTEGER,  
+    allowNull: true,
+  },
 }, {
   timestamps: true,  
 });

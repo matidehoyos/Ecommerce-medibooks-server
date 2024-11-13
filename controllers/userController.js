@@ -1,3 +1,4 @@
+import Cliente from '../models/Cliente.js';
 import User from '../models/User.js';
 
 const createUser = async (req, res) => {
@@ -14,8 +15,17 @@ const createUser = async (req, res) => {
       },
     });
 
+    if (created) {
+      await Cliente.create({
+        userId: auth0Id,  
+        nombre: username,    
+        email: email,
+        telefono: '',
+      });
+    }
+
     res.status(201).json({
-      message: created ? 'Usuario creado con éxito' : 'Usuario ya existente',
+      message: created ? 'Usuario y cliente creados con éxito' : 'Usuario ya existente',
       user: newUser,
     });
   } catch (error) {
@@ -23,6 +33,7 @@ const createUser = async (req, res) => {
     res.status(500).json({ message: 'Error al crear o encontrar el usuario' });
   }
 };
+
 
 const getUsers = async (req, res) => {
   try {
@@ -33,11 +44,13 @@ const getUsers = async (req, res) => {
   }
 };
 
-const getUserById = async (id) => {
+const getUserByEmail = async (req, res) => {
   try {
-    const user = await User.findByPk(id);
-    return user;
+    const { email } = req.params;
+    const user = await User.findOne({ where: { email }});
+    res.status(200).json(user);
   } catch (error) {
+    console.error(error.message)
     throw new Error('Error al obtener el usuario: ' + error.message);
   }
 };
@@ -70,8 +83,6 @@ const updateUserRole = async (req, res) => {
 const suspenderUsuario = async (req, res) => {
   const { id } = req.params;
   const { suspendido } = req.body;
-
-  console.log(`ID: ${id}, Suspendido: ${suspendido}`); 
 
   try {
     const user = await User.findByPk(id);
@@ -107,7 +118,7 @@ const deleteUser = async (req, res) => {
 
 export default {
   createUser: createUser,
-  getUserById: getUserById,
+  getUserByEmail: getUserByEmail,
   getUsers: getUsers,
   updateUserRole: updateUserRole,
   suspenderUsuario: suspenderUsuario,

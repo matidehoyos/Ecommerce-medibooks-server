@@ -8,11 +8,11 @@ const Venta = sequelize.define('Venta', {
     autoIncrement: true,
   },
   userId: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false,
     references: {
       model: 'Users',
-      key: 'id',
+      key: 'auth0Id',
     },
   },
   transactionId: {
@@ -30,6 +30,10 @@ const Venta = sequelize.define('Venta', {
   },
   totalAmount: {
     type: DataTypes.DECIMAL(10, 2),
+    allowNull: false,
+  },
+  costoEnvio: {
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   createdAt: {

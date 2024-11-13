@@ -10,29 +10,22 @@ const Cliente = sequelize.define('Cliente', {
   userId: {
     type: DataTypes.STRING,
     allowNull: false,
+    unique: true,
     references: {
       model: 'Users',
       key: 'auth0Id',
     },
   },
-  direccion: {
+  nombre: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  ciudad: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  codigoPostal: {
+  email: {
     type: DataTypes.STRING,
     allowNull: false,
   },
   telefono: {
     type: DataTypes.STRING,
-    allowNull: true,
-  },
-  observaciones: {
-    type: DataTypes.TEXT,
     allowNull: true,
   },
   createdAt: {
@@ -49,3 +42,4 @@ const Cliente = sequelize.define('Cliente', {
 });
 
 export default Cliente;
+

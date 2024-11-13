@@ -10,6 +10,10 @@ const DetallePedido = sequelize.define('DetallePedido', {
   pedidoId: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    references: {
+      model: 'Pedidos',
+      key: 'id',
+    },
   },
   productId: {
     type: DataTypes.INTEGER,
@@ -20,6 +24,10 @@ const DetallePedido = sequelize.define('DetallePedido', {
     },
   },
   title: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  terminacion: {
     type: DataTypes.STRING,
     allowNull: false,
   },

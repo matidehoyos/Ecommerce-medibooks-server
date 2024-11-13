@@ -5,9 +5,12 @@ import userRoutes from './userRoutes.js';
 import payRoutes from './payRoutes.js';
 import promocionRoutes from './promocionRoutes.js';
 import resenaRoutes from './resenaRoutes.js';
-import pedidoRoutes from './pedidoRoutes.js';
 import clienteRoutes from './clienteRoutes.js';
+import ventasRoutes from './ventasRoutes.js';
 import transactionRoutes from './transactionRoutes.js';
+import pedidoRoutes from './pedidoRoutes.js';
+import direccionRoutes from './direccionRoutes.js';
+import correoRoutes from './correoRoutes.js';
 
 const router = Router();
 
@@ -20,6 +23,10 @@ router.use('/reseñas', resenaRoutes);
 router.use('/pedidos', pedidoRoutes);
 router.use('/clientes', clienteRoutes);
 router.use('/transaction', transactionRoutes);
+router.use('/ventas', ventasRoutes);
+router.use('/direccion', direccionRoutes);
+router.use('/correo', correoRoutes);
+
 
 export default router;
 

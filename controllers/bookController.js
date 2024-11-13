@@ -5,6 +5,7 @@ const getAllBooksController = async (req, res) => {
     const books = await Book.findAll();
     res.status(200).json(books);
   } catch (error) {
+    console.error(error.message)
     res.status(500).json({ error: error.message });
   }
 };
