@@ -1,5 +1,6 @@
 export const cotizacionCorreo = async (req, res) => {
-    const { provincia, destino, pesoTotal, altoTotal, largoTotal, anchoTotal, tipoEnvio } = req.body;
+    const { provincia, destino, pesoTotal } = req.body;
+    const codPos = destino.split('').filter(char => !isNaN(char)).join('');
 
 
     if (!destino || !pesoTotal) {
@@ -9,7 +10,7 @@ export const cotizacionCorreo = async (req, res) => {
     const pesoEnKilos = (pesoTotal / 1000).toFixed(2); 
 
 
-    const url = `https://correo-argentino1.p.rapidapi.com/calcularPrecio?cpOrigen=7600&cpDestino=${destino}&provinciaOrigen=AR-B&provinciaDestino=${provincia}&peso=${pesoEnKilos}`;
+    const url = `https://correo-argentino1.p.rapidapi.com/calcularPrecio?cpOrigen=7600&cpDestino=${codPos}&provinciaOrigen=AR-B&provinciaDestino=${provincia}&peso=${pesoEnKilos}`;
 
     try {
         const response = await fetch(url, {

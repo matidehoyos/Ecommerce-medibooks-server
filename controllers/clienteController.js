@@ -53,13 +53,11 @@ export const getClienteById = async (req, res) => {
 
 export const deleteCliente = async (req, res) => {
   const { id } = req.params;
-
   try {
     const cliente = await Cliente.findByPk(id);
     if (!cliente) {
       return res.status(404).json({ message: 'Cliente no encontrado.' });
     }
-
     await cliente.destroy();
     return res.status(204).json(); 
   } catch (error) {

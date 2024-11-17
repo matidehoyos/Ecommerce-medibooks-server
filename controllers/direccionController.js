@@ -1,12 +1,14 @@
-import Cliente from '../models/Cliente.js';
+import Cliente from '../models/Cliente.js'; 
 import Direccion from '../models/Direccion.js';
 
 export const createDireccion = async (req, res) => {
     const { userId, nombre, direccion, piso, departamento, ciudad, codigoPostal, telefono, observaciones } = req.body;
 
   try {
-    let clienteExistente = await Cliente.findOne({ where: { userId } });
-
+    let clienteExistente = await Cliente.findOne({ 
+      where: { userId }
+    });   
+    
     if (clienteExistente) {
       await clienteExistente.update({
         nombre: nombre,
@@ -30,7 +32,7 @@ export const createDireccion = async (req, res) => {
       direccionId: nuevaDireccion.id 
     });
   } catch (error) {
-    console.error('Error al guardar cliente y dirección:', error);
+    console.error('Error al guardar cliente y dirección:', error.message);
     res.status(500).json({ success: false, message: 'Error al procesar la compra' });
   }
 };

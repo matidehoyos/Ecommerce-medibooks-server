@@ -21,11 +21,11 @@ const Direccion = sequelize.define('Direccion', {
   },
    piso: {
     type: DataTypes.STRING,
-    allowNull: true,
+    defaultValue: '-',
   },
   departamento: {
     type: DataTypes.STRING,
-    allowNull: true,
+    defaultValue: '-',
   },
   ciudad: {
     type: DataTypes.STRING,
@@ -34,10 +34,11 @@ const Direccion = sequelize.define('Direccion', {
   codigoPostal: {
     type: DataTypes.STRING,
     allowNull: false,
-},
-observacion: {
-      type: DataTypes.TEXT,
-      allowNull: true,
+  },
+  observacion: {
+    type: DataTypes.TEXT,
+    allowNull: true,
+    defaultValue: '-',
   },
   createdAt: {
     type: DataTypes.DATE,
