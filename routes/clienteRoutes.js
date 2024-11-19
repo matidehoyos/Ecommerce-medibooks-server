@@ -7,6 +7,6 @@ const router = Router();
 router.put('/clientes/update', updateCliente);
 router.get('/clientes', getClientes);
 router.get('/clientes/:id', getClienteById);
-router.delete('/clientes/:id', deleteCliente);
+router.delete('/clientes/delete/:id', deleteCliente);
 
 export default router;

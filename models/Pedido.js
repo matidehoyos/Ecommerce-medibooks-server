@@ -11,7 +11,7 @@ const Pedido = sequelize.define('Pedido', {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-      model: 'Ventas',
+      model: 'ventas',
       key: 'id',
     },
   },
@@ -19,7 +19,7 @@ const Pedido = sequelize.define('Pedido', {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-      model: 'Clientes',
+      model: 'clientes',
       key: 'id',
     },
   },
@@ -27,7 +27,7 @@ const Pedido = sequelize.define('Pedido', {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-      model: 'Direcciones',
+      model: 'direcciones',
       key: 'id',
     },
   },

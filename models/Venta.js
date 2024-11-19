@@ -11,7 +11,7 @@ const Venta = sequelize.define('Venta', {
     type: DataTypes.STRING,
     allowNull: false,
     references: {
-      model: 'Users',
+      model: 'users',
       key: 'auth0Id',
     },
   },

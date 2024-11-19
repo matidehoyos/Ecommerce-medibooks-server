@@ -4,6 +4,7 @@ import User from '../models/User.js';
 const createUser = async (req, res) => {
   try {
     const { auth0Id, username, email, profilePicture } = req.body;
+    console.log(auth0Id,username,email)
 
     const [newUser, created] = await User.findOrCreate({
       where: { auth0Id },
@@ -12,7 +13,7 @@ const createUser = async (req, res) => {
         email,
         profilePicture,
         role: 'user',
-      },
+      }
     });
 
     if (created) {
@@ -20,7 +21,7 @@ const createUser = async (req, res) => {
         userId: auth0Id,  
         nombre: username,    
         email: email,
-        telefono: '',
+        telefono: '-',
       });
     }
 

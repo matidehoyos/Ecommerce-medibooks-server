@@ -10,9 +10,8 @@ const Cliente = sequelize.define('Cliente', {
   userId: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,
     references: {
-      model: 'Users',
+      model: 'users',
       key: 'auth0Id',
     },
   },
