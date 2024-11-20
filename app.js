@@ -40,7 +40,7 @@ app.use((err, req, res, next) => {
 
 const PORT = process.env.PORT || 5000;
 
-sequelize.sync({force: true})
+sequelize.sync()
   .then(() => {
       console.log('Base de datos sincronizada');
       app.listen(PORT, () => {
